@@ -1,0 +1,81 @@
+﻿<site-menu>
+    <loader *ngIf="isVideoInfoProcessing || isAudioUploadProcessing"></loader>
+    <div class="upload-page">
+        <form class="link-row" [formGroup]="urlRequestForm" novalidate (ngSubmit)="videoInfo(urlRequestForm)">
+            <div class="link-line">
+                <input type="text" class="input link-input" placeholder="link" formControlName="url" />
+                <error *ngIf="urlRequestForm.get('url').dirty" [errorObject]="urlRequestErrorValiation['url']" [actualErrors]="urlRequestForm.get('url').errors">
+                </error>
+            </div>
+            <div class="go-line">
+                <button class="submit go-button" type="submit">go</button>
+            </div>
+        </form>
+        <div *ngIf="videoInfoError" class="global-error">
+            {{videoInfoError}}
+        </div>
+        <form *ngIf="isUrlConfirm" class="player-row" [formGroup]="uploadAudioForm" novalidate (ngSubmit)="uploadAudio(uploadAudioForm)">
+            <div class="yt-video">
+                <iframe class="yt-frame-video" [src]="videoId | safe" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="info">
+                <div class="artist-line">
+                    <input type="text" class="input artist-input" placeholder="artist" formControlName="artist" />
+                    <error *ngIf="uploadAudioForm.get('artist').dirty" [errorObject]="uploadAudioErrorValidation['artist']" [actualErrors]="uploadAudioForm.get('artist').errors">
+                    </error>
+                </div>
+                <div class="song-line">
+                    <input type="text" class="input song-input" placeholder="song name" formControlName="song" />
+                    <error *ngIf="uploadAudioForm.get('song').dirty" [errorObject]="uploadAudioErrorValidation['song']" [actualErrors]="uploadAudioForm.get('song').errors">
+                    </error>
+                </div>
+                <div class="id-line">
+                    <input type="text" class="input id-input" disabled [ngModel]="videoId" [ngModelOptions]="{standalone: true}" />
+                </div>
+                <div class="upload-line">
+                    <button class="submit upload-button" type="submit">upload</button>
+                </div>
+            </div>
+        </form>
+        <div *ngIf="audioUploadError" class="global-error">
+            {{audioUploadError}}
+        </div>
+    </div>
+</site-menu>
+
+
+
+<!--<form [formGroup]="urlRequestForm" novalidate (ngSubmit)="videoInfo(urlRequestForm)">
+    <input type="text" formControlName="url" />
+    <error *ngIf="urlRequestForm.get('url').dirty"
+           [errorObject]="urlRequestErrorValiation['url']"
+           [actualErrors]="urlRequestForm.get('url').errors">
+    </error>
+    <div *ngIf="isVideoInfoProcessing">
+        Loading
+    </div>
+    <button type="submit">Get video info</button>
+</form>
+<br/>
+<form [formGroup]="uploadAudioForm" novalidate (ngSubmit)="uploadAudio(uploadAudioForm)">
+    <div>
+        Artist
+        <input type="text" formControlName="artist" />
+        <error *ngIf="uploadAudioForm.get('artist').dirty"
+               [errorObject]="uploadAudioErrorValidation['artist']"
+               [actualErrors]="uploadAudioForm.get('artist').errors">
+        </error>
+    </div>
+    <div>
+        Song
+        <input type="text" formControlName="song" />
+        <error *ngIf="uploadAudioForm.get('song').dirty"
+               [errorObject]="uploadAudioErrorValidation['song']"
+               [actualErrors]="uploadAudioForm.get('song').errors">
+        </error>
+    </div>
+    <div>
+        Content Length: {{contentLength}}
+    </div>
+    <button type="submit">Upload</button>
+</form>-->

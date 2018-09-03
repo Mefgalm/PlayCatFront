@@ -1,0 +1,97 @@
+﻿<div class="audioPlayer">
+    <!--<div *ngIf="isPlaylistLoaded && audio">
+        Ok
+    </div>
+    <div *ngIf="isPlaylistLoaded && !audio">
+        Empty
+    </div>
+    <div *ngIf="!isPlaylistLoaded">
+        Loading
+    </div>-->
+
+    <div class="player-dialog">
+        <jw-modal id="custom-modal-1">
+            <div class="audio-panel-area">
+                <div *ngIf="currentPlaylist" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="100" (scrolled)="onScrollDown()"
+                [scrollWindow]="false" class="audios-panel">
+                    <div class="audios" >
+
+
+                        <div *ngFor="let audio of currentPlaylist.audios">
+                            <audiotrack [id]="audio.id" [artist]="audio.artist" [song]="audio.song" [duration]="audio.duration" (onPlayStart)="playById(audio.id)"
+                                (onSelectAudio)="selectAudio($event)" (onRemoveFromPlaylist)="removeFromPlaylist($event)">
+                            </audiotrack>
+                        </div>
+                    </div>
+                    <div class="playlists-part">
+                        <playlist [playlists]="playlists" [currentPlaylist]="currentPlaylist" (onCreate)="createPlaylist($event)" (onDelete)="deletePlaylist($event)"
+                            (onEdit)="updatePlaylist($event)" (onSelect)="selectPlaylist($event)">
+                        </playlist>
+                    </div>
+                </div>
+            </div>
+        </jw-modal>
+    </div>
+
+    <div class="player-inner" *ngIf="isPlaylistLoaded">
+
+        <div *ngIf="!audio">
+            Your playlist is empty
+        </div>
+        <div *ngIf="audio" class="audio-controls">
+            <div style="display:flex">
+                <button class="previous-player-button" (click)="previous()"></button>
+                <button class="pause-player-button" *ngIf="isPlaying" (click)="pause()"></button>
+                <button class="play-player-button" *ngIf="!isPlaying" (click)="play()"></button>
+                <button class="next-player-button" (click)="next()"></button>
+                <div class="loop-checkbox-div"><input class="loop-checkbox" id="loop-checkbox" type="checkbox" [checked]="isLoop"
+                        (change)="toggleLoop()" /><label class="loop-label" for="loop-checkbox"></label></div>
+            </div>
+
+            <div class="volume-and-song" style="display: flex;">
+                <progressBar [min]="0" [max]="audio.duration" [height]="15" [width]="650" [horizontal-padding]="10" [vertical-padding]="0"
+                    [currentValue]="currentTime" (onClick)="currentTimeChanged($event)">
+                </progressBar>
+                {{currentTime | secondToTime}} {{audio.artist}} - {{audio.song}} {{audio.duration | secondToTime}} {{currentPlaylist.title}}
+            </div>
+
+            <div>
+                <progressBar [min]="0" [max]="100" [height]="15" [width]="100" [horizontal-padding]="10" [vertical-padding]="0" [currentValue]="volume"
+                    (onClick)="volumeChanged($event)">
+                </progressBar>
+            </div>
+
+            <!-- <div>
+                <button (click)="previous()">Previous</button>
+                <button (click)="next()">Next</button>
+            </div>-->
+            <div class="player-dialog">
+
+            </div>
+
+            <button class="show-playlist" *ngIf="!display" style="float:right" (click)="openModal('custom-modal-1')"></button>
+            <button class="hide-playlist" *ngIf="display" style="float:right" (click)="closeModal('custom-modal-1')"></button>
+        </div>
+    </div>
+    <div *ngIf="!isPlaylistLoaded">
+        L O A D I N G
+    </div>
+</div>
+
+<jw-modal id="playlist-dialog">
+    <!-- class="playlist-dialog" -->
+    Add To Playlist
+    <div>
+        <div *ngIf="isAddToPlaylistError">
+            {{addToPlaylistError}}
+        </div>
+        <div *ngFor="let playlist of playlists">
+            <div>
+                <button (click)="addToPlaylist(playlist.id)">Add</button> {{playlist.title}}
+            </div>
+        </div>
+    </div>
+
+    <button (click)="closePlaylistDialog()">Close</button>
+
+</jw-modal>
