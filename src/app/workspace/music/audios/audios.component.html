@@ -1,6 +1,8 @@
 ﻿<site-menu>
-    <div *ngFor="let audio of audios">
-        <search-audio [id]="audio.id" [artist]="audio.artist" [song]="audio.song" [duration]="audio.duration"/>
-        
+    <div class="audio-search">
+        <div *ngFor="let audio of audios">
+            <search-audio [id]="audio.id" [artist]="audio.artist" [song]="audio.song" [duration]="audio.duration">
+            </search-audio>        
+        </div>
     </div>
 </site-menu>

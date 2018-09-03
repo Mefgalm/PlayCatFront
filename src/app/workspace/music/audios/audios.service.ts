@@ -10,7 +10,7 @@ export class AudioService {
     private _audioUrl = 'api/audio/audios';
     private _addToPlaylistyUrl = 'api/audio/addToPlaylist';
     private _removeFromPlaylistyUrl = 'api/audio/removeFromPlaylist';
-    private _search = '/api/audio/search';
+    private _search = 'api/audio/search';
 
     constructor(private _httpService: HttpService) {
     }
@@ -23,7 +23,7 @@ export class AudioService {
         );
 
         return this._httpService
-                    .get(this._audioUrl + this._search + parametrsLine)
+                    .get(this._search + parametrsLine)
                     .then(x => Object.assign(new AudioResult(), x.json()));
     }
 

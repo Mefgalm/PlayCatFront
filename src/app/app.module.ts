@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        AuthModule,
+        AuthModule,        
         WorkspaceModule,
         RouterModule.forRoot([
             {
@@ -29,7 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AuthGuardService
     ],
     declarations: [
-        AppComponent,
+        AppComponent,        
     ],
     bootstrap: [AppComponent],    
 })

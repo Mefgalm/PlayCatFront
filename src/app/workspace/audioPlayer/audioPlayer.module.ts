@@ -6,7 +6,6 @@ import { AudioPlayerService } from './audioPlayer.service';
 import { AudioService } from '../music/audios/audios.service';
 import { ProgressBarModule } from '../../shared/components/progressBar.module';
 import { DialogModule } from 'primeng/primeng';
-import { SecondToTimePipe } from '../../shared/pipes/secondToTime.pipe';
 import { PlaylistService } from './playlist.service';
 import { ErrorModule } from '../../shared/components/error.module';
 import { PlaylistComponent } from './playlist.component';
@@ -15,6 +14,7 @@ import  {MatDialogModule } from '@angular/material/dialog';
 import { ContentAudioPlayerDialogComponent } from './content-audio-player-dialog.component';
 import { ModalModule } from '../../shared/components/modal/modal.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { SecondToTimeModule } from '../../shared/pipes/secondToTime.module';
 
 @NgModule({
     imports: [
@@ -26,11 +26,11 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
         MatDialogModule,
         DialogModule,
         ModalModule,
-       InfiniteScrollModule
+        InfiniteScrollModule,
+        SecondToTimeModule
     ],
     declarations: [
         AudioPlayerComponent,
-        SecondToTimePipe,
         PlaylistComponent,
         AudioComponent,
         ContentAudioPlayerDialogComponent],

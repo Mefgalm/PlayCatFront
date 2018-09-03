@@ -14,6 +14,7 @@ import { AuthGuardService } from '../../shared/services/authGuard.service';
 import { FormsModule } from '@angular/forms';
 import { SafePipe } from '../../shared/pipes/safe.pipe';;
 import { SearchAudioComponent } from './audios/search-audio/search-audio.component'
+import { SecondToTimeModule } from '../../shared/pipes/secondToTime.module';
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import { SearchAudioComponent } from './audios/search-audio/search-audio.compone
         ErrorModule,
         CommonModule,
         FormsModule,
+        SecondToTimeModule,
         LoaderModule,
         ReactiveFormsModule,
         RouterModule.forChild([
@@ -45,8 +47,8 @@ import { SearchAudioComponent } from './audios/search-audio/search-audio.compone
         AudiosComponent,
         SearchComponent,
         UploadComponent,
-        SafePipe,,
-        SearchAudioComponent,
+        SafePipe,
+        SearchAudioComponent,        
     ],
     providers: [
         UploadService,
