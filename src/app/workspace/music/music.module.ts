@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { SafePipe } from '../../shared/pipes/safe.pipe';;
 import { SearchAudioComponent } from './audios/search-audio/search-audio.component'
 import { SecondToTimeModule } from '../../shared/pipes/secondToTime.module';
+import { ModalModule } from '../../shared/components/modal/modal.module';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { SecondToTimeModule } from '../../shared/pipes/secondToTime.module';
         FormsModule,
         SecondToTimeModule,
         LoaderModule,
+        ModalModule,
         ReactiveFormsModule,
         RouterModule.forChild([
             {

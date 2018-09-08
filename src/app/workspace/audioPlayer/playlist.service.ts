@@ -6,15 +6,23 @@ import { CreatePlaylistRequest } from '../../data/request/createPlaylistRequest'
 import { UpdatePlaylistRequest } from '../../data/request/updatePlaylistRequest';
 import { PlaylistResult } from '../../data/response/playlistResult';
 import { BaseResult } from '../../data/response/baseResult';
+import { AllUserPlaylistsResult } from '../../data/response/allUserPlaylistsResult';
 
 @Injectable()
 export class PlaylistService {
-    private _playlistUrl = 'api/playlist/userPlaylists';
-    private _createPlaylistUrl = 'api/playlist/create';
-    private _updatePlaylistUrl = 'api/playlist/update';
-    private _deletePlaylistUrl = 'api/playlist/delete';
+    private basePlaylistUrl = "api/playlist/";
+
+    private _playlistUrl = (params: string) => this.buildUrl('userPlaylists') + params;
+    private _createPlaylistUrl = () => this.buildUrl('create');
+    private _updatePlaylistUrl = () => this.buildUrl('update');
+    private _deletePlaylistUrl = () => this.buildUrl('delete');
+    private _allUserPlaylistsUrl = () => this.buildUrl('allUserPlaylists');
 
     constructor(private _httpService: HttpService) {
+    }
+
+    private buildUrl(path: string): string {
+        return this.basePlaylistUrl + path;
     }
 
     userPlaylists(playlistId: string, skip: number, take: number): Promise<UserPlaylistsResult> {
@@ -25,17 +33,23 @@ export class PlaylistService {
         );
 
         return this._httpService
-                   .get(this._playlistUrl + parametrsLine)
+                   .get(this._playlistUrl(parametrsLine))
                    .then(x => Object.assign(new UserPlaylistsResult(), x.json()));
-    } 
+    }
+
+    allUserPlaylists() : Promise<AllUserPlaylistsResult> {
+        return this._httpService
+                    .get(this._allUserPlaylistsUrl())
+                    .then(x => Object.assign(new AllUserPlaylistsResult(), x.json()));
+    }
 
     createPlaylist(createPlaylistRequest: CreatePlaylistRequest): Promise<PlaylistResult> {
-        return this._httpService.post(this._createPlaylistUrl, JSON.stringify(createPlaylistRequest))
+        return this._httpService.post(this._createPlaylistUrl(), JSON.stringify(createPlaylistRequest))
             .then(x => Object.assign(new PlaylistResult(), x.json()));
     }
 
     updatePlaylist(updatePlaylistRequest: UpdatePlaylistRequest): Promise<PlaylistResult> {
-        return this._httpService.put(this._updatePlaylistUrl, JSON.stringify(updatePlaylistRequest))
+        return this._httpService.put(this._updatePlaylistUrl(), JSON.stringify(updatePlaylistRequest))
             .then(x => Object.assign(new PlaylistResult(), x.json()));
     }
 

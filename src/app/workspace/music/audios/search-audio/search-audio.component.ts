@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'search-audio',
@@ -12,9 +12,14 @@ export class SearchAudioComponent implements OnInit {
   @Input() song: string;
   @Input() duration: number;
 
+  @Output() onSelectAudio = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  selectAudio() {
+    this.onSelectAudio.emit(this.id);
+}
 }

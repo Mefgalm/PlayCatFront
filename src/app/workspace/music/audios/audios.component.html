@@ -1,8 +1,25 @@
 ﻿<site-menu>
     <div class="audio-search">
         <div *ngFor="let audio of audios">
-            <search-audio [id]="audio.id" [artist]="audio.artist" [song]="audio.song" [duration]="audio.duration">
+            <search-audio [id]="audio.id" [artist]="audio.artist" [song]="audio.song" [duration]="audio.duration" (onSelectAudio)="selectAudio($event)">
             </search-audio>        
         </div>
     </div>
+    <jw-modal id="playlist-dialog">
+        <!-- class="playlist-dialog" -->
+        Add To Playlist
+        <div>
+            <div *ngIf="isAddToPlaylistError">
+                {{addToPlaylistError}}
+            </div>
+            <div *ngFor="let playlist of _playlists">
+                <div>
+                    <button (click)="addToPlaylist(playlist.id)">Add</button> {{playlist.title}}
+                </div>
+            </div>
+        </div>
+    
+        <button (click)="closePlaylistDialog()">Close</button>
+    
+    </jw-modal>
 </site-menu>
