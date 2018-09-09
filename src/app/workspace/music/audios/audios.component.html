@@ -1,5 +1,9 @@
 ﻿<site-menu>
+    <loader *ngIf="isAudiosIsLoading"></loader>
     <div class="audio-search">
+        <div>
+            <input #search (keyup)="onKeyUp(search.value)"/>
+        </div>
         <div *ngFor="let audio of audios">
             <search-audio [id]="audio.id" [artist]="audio.artist" [song]="audio.song" [duration]="audio.duration" (onSelectAudio)="selectAudio($event)">
             </search-audio>        
