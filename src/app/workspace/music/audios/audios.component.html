@@ -9,21 +9,26 @@
             </search-audio>        
         </div>
     </div>
-    <jw-modal id="playlist-dialog">
+    <jw-modal id="audio-playlist-dialog">
         <!-- class="playlist-dialog" -->
-        Add To Playlist
-        <div>
-            <div *ngIf="isAddToPlaylistError">
+        <div class="playlists">
+            <div class="add-to-playlist-error" *ngIf="isAddToPlaylistError">
                 {{addToPlaylistError}}
             </div>
             <div *ngFor="let playlist of _playlists">
-                <div>
-                    <button (click)="addToPlaylist(playlist.id)">Add</button> {{playlist.title}}
+                <div class="playlist-row">
+                    <div>
+                        {{playlist.title}}
+                    </div>
+                    <button class="add-to-playlist-button" (click)="addToPlaylist(playlist.id)"></button>
                 </div>
             </div>
         </div>
     
-        <button (click)="closePlaylistDialog()">Close</button>
-    
+        <div class="close-btn-footer">
+            <button class="close-btn" (click)="closePlaylistDialog()">Close</button>
+        </div>
+
     </jw-modal>
 </site-menu>
+

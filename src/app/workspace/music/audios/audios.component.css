@@ -17,3 +17,61 @@ input {
     margin-bottom: 5%;
     width: 95%;
 }
+
+.audio-add-title {
+    color: red;
+}
+
+.add-to-playlist-error {
+    color: red;
+}
+
+.playlist-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding: 5px;
+}
+
+.add-to-playlist-button {
+    width: 32px;
+    height: 32px;
+    background: url(../../../assets/icons/add-button-inside-black-circle.png) no-repeat;
+    background-size: contain;
+    border: none;
+}
+
+/deep/  #audio-playlist-dialog .jw-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/deep/  #audio-playlist-dialog .jw-modal .jw-modal-body {
+    height: auto;
+    min-width: 30%;
+}
+
+/deep/ #audio-playlist-dialog .jw-modal-background {
+    background-color: black;
+}
+
+.playlists {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.close-btn-footer {
+    display: flex;
+    justify-content: center; 
+}
+
+.close-btn {
+    font-family: Lato, sans-serif;
+    font-size: 20px;
+    line-height: 1.7;
+    background-color: #39118a;
+    color: #ffffff;
+    border: none;
+}

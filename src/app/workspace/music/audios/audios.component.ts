@@ -93,11 +93,11 @@ export class AudiosComponent implements OnInit {
         this.isAddToPlaylistError = false;
         this.addToPlaylistError = null;
 
-        this._modalService.open("playlist-dialog");
+        this._modalService.open("audio-playlist-dialog");
     }
 
     closePlaylistDialog() {
         this.addToPlaylistVisible = false;
-        this._modalService.close("playlist-dialog");
+        this._modalService.close("audio-playlist-dialog");
     }
 }

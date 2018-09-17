@@ -30,11 +30,11 @@ export class ModalComponent implements OnInit {
 
     document.body.appendChild(this.element);
 
-    this.element.addEventListener('click', function (e: any) {
-      if (e.target.className === 'jw-modal') {
-        modal.close();
-      }
-    });
+    // this.element.addEventListener('click', function (e: any) {
+    //   if (e.target.className === 'jw-modal') {
+    //     modal.close();
+    //   }
+    // });
 
     this.modalService.add(this);
   }
