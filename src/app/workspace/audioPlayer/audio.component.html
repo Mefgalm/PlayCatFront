@@ -1,24 +1,28 @@
 ﻿<div class="audio">
-    <div class="play-and-song">
-        <div class="play-controls">
-            <button class="play" (click)="play()"></button>
+    <div class="audio-name">
+        <div class="play-and-song">
+            <div class="play-controls">
+                <button class="play" (click)="play()"></button>
+            </div>
+            <div class="song-info">
+                <div class="artist-name">
+                    {{artist}}
+                </div>
+                <div class="delimiter">
+                    -
+                </div>
+                <div class="song">
+                    {{song}}
+                </div>
+            </div>
+
         </div>
-        <div class="song-info">
-            <div class="artist-name">
-                {{artist}}
-            </div>
-            <div class="delimiter">
-                -
-            </div>
-            <div class="song">
-                {{song}}
-            </div>
-            <div class="time">
-                ({{duration | secondToTime}})
-            </div>
+        <div class="time">
+            ({{duration | secondToTime}})
         </div>
     </div>
     <div class="additional-controls">
+
         <div class="playlist-add">
             <button class="playlist-add-icon" (click)="selectAudio()"></button>
         </div>

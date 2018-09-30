@@ -1,7 +1,10 @@
 ﻿.audio-search {
     padding-top: 80px;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 100%;
+    width: 100%;
+    position: fixed;
 }
 
 input {
@@ -74,4 +77,13 @@ input {
     background-color: #39118a;
     color: #ffffff;
     border: none;
+}
+
+.audios-search-block {
+    height: 80%;
+    overflow-y: auto;
+}
+
+.search-input {
+    margin-bottom: 40px;
 }

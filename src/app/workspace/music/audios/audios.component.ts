@@ -25,6 +25,7 @@ export class AudiosComponent implements OnInit {
     private isAddToPlaylistError: boolean;
     private addToPlaylistError: string;
     private isAudiosIsLoading: boolean;
+    private _searchValue: string;
 
     constructor(private _audioService: AudioService,
                 private _modalService: ModalService,
@@ -32,6 +33,8 @@ export class AudiosComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this._searchValue = "";
+
         this._skip = this.defaultSkip;
         this._take = this.defaultTake;
         this.isAudiosIsLoading = true;
@@ -41,28 +44,25 @@ export class AudiosComponent implements OnInit {
                     this._playlists = result.playlists;
                 }
             });
-
-        this._audioService.searchAudios("", this._skip, this._take)
-            .then(result => {
-                if(result.ok) {
-                    this.audios = result.audios;
-                }
-                else {
-                    console.log(result.info);
-                }
-                this.isAudiosIsLoading = false;
-            });
+        this.audios = [];
+        this.loadAudios();
     }
 
     onKeyUp(value: string) {
         this._skip = this.defaultSkip;
         this._take = this.defaultTake;
 
+        this.audios = [];
+        this.loadAudios();
+    }
+
+    loadAudios() {
         this.isAudiosIsLoading = true;
-        this._audioService.searchAudios(value, this._skip, this._take)
+        this._audioService.searchAudios(this._searchValue, this._skip, this._take)
             .then(result => {
                 if(result.ok) {
-                    this.audios = result.audios;
+                    this.audios = this.audios.concat(result.audios);
+                    this._skip = this.audios.length;
                 }
                 else {
                     console.log(result.info);
@@ -99,5 +99,9 @@ export class AudiosComponent implements OnInit {
     closePlaylistDialog() {
         this.addToPlaylistVisible = false;
         this._modalService.close("audio-playlist-dialog");
+    }
+
+    onScrollDown() {
+        this.loadAudios();
     }
 }

@@ -16,6 +16,7 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';;
 import { SearchAudioComponent } from './audios/search-audio/search-audio.component'
 import { SecondToTimeModule } from '../../shared/pipes/secondToTime.module';
 import { ModalModule } from '../../shared/components/modal/modal.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { ModalModule } from '../../shared/components/modal/modal.module';
         SecondToTimeModule,
         LoaderModule,
         ModalModule,
+        InfiniteScrollModule,
         ReactiveFormsModule,
         RouterModule.forChild([
             {

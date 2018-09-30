@@ -11,16 +11,23 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    width: 100%;
 }
 
 .song-info {
     display: flex;
+    justify-content: space-between;
     font-family: Lato, sans-serif;
     font-size: 22px;
+    width: 100%;
 }
 
 .play-controls {
     padding: 0 1% 0;
+}
+
+.song-info-name {
+    display: flex;    
 }
 
 .play {

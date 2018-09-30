@@ -1,8 +1,8 @@
 ﻿.audios-panel {
     /* height: 82.3vh; */
     height: 100%;
-    margin-left: 5%;
-    width: 90%;
+    margin-left: 1%;
+    width: 98%;
     display: flex;
     justify-content: space-between;
     background-color: rgba(234, 235, 240, 0.35);

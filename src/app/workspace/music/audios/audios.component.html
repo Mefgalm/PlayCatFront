@@ -2,12 +2,19 @@
     <loader *ngIf="isAudiosIsLoading"></loader>
     <div class="audio-search">
         <div>
-            <input #search (keyup)="onKeyUp(search.value)"/>
+            <input class="search-input" #search (keyup)="onKeyUp(search.value)"/>
         </div>
-        <div *ngFor="let audio of audios">
-            <search-audio [id]="audio.id" [artist]="audio.artist" [song]="audio.song" [duration]="audio.duration" (onSelectAudio)="selectAudio($event)">
-            </search-audio>        
-        </div>
+        <div infinite-scroll
+            class="audios-search-block" 
+            [infiniteScrollDistance]="2" 
+            [infiniteScrollThrottle]="100" 
+            (scrolled)="onScrollDown()"
+            [scrollWindow]="false">
+            <div *ngFor="let audio of audios">
+                <search-audio [id]="audio.id" [artist]="audio.artist" [song]="audio.song" [duration]="audio.duration" (onSelectAudio)="selectAudio($event)">
+                </search-audio>        
+            </div>
+        </div>  
     </div>
     <jw-modal id="audio-playlist-dialog">
         <!-- class="playlist-dialog" -->

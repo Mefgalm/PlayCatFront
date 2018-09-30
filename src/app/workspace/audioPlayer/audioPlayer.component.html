@@ -15,8 +15,6 @@
                 <div *ngIf="currentPlaylist" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="100" (scrolled)="onScrollDown()"
                 [scrollWindow]="false" class="audios-panel">
                     <div class="audios" >
-
-
                         <div *ngFor="let audio of currentPlaylist.audios">
                             <audiotrack [id]="audio.id" [artist]="audio.artist" [song]="audio.song" [duration]="audio.duration" (onPlayStart)="playById(audio.id)"
                                 (onSelectAudio)="selectAudio($event)" (onRemoveFromPlaylist)="removeFromPlaylist($event)">
